@@ -1,5 +1,5 @@
-- 000_ProjectName:
-  - 000-00_ProjectName_CommonFiles:
+- ${jobNum}_${projectName}:
+  - ${jobNum}-${partNum}_${projectName}_CommonFiles:
     - ORIGINALS-SOURCE:
       - FROM CLIENT:
       - FROM ITK:
@@ -30,7 +30,7 @@
       - 02-REVIEW:
       - 03-DELIVERY-PACKAGES:
       - 04-SUPPORT:
-  - 000-01_ProjectName_partName:
+  - ${jobNum}-${partNum}_${projectName}_${partName}:
     - ORIGINALS-SOURCE:
     - WORKING-FILES:
       - LINKS:

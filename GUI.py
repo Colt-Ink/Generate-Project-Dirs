@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QGridLayout, QWidget, QComboBox, QLineEdit, QPushButton, QMessageBox
 
+
 def window(callback, get_next_number_fn, job_number_default, part_number_default, project_name_default, part_name_default):
     app = QApplication([])
     win = QMainWindow()
@@ -44,8 +45,8 @@ def window(callback, get_next_number_fn, job_number_default, part_number_default
 
     def on_submit():
         # First validate the input fields, then proceed.
-        job_number_input = job_number_entry.text()
-        part_number_input = part_number_entry.text()
+        job_number_input = int(job_number_entry.text())
+        part_number_input = int(part_number_entry.text())
         project_name_input = project_name_entry.text()
         part_name_input = part_name_entry.text()
 
@@ -64,12 +65,15 @@ def window(callback, get_next_number_fn, job_number_default, part_number_default
     def folder_type_change(state):
         # If it's a new job, set the next part number to 1
         if state == "New Job":
-            job_number_default, _ = get_next_number_fn("New Job")
+            job_number_default, _, _ = get_next_number_fn("New Job")
             job_number_entry.setText(job_number_default)
             part_number_entry.setText("01")
-        else:  # "New Part"
-            _, part_number_default = get_next_number_fn("New Part")
+        else: # "New Part"
+            job_number_default, part_number_default, job_name_parent = get_next_number_fn("New Part")
+            job_number_entry.setText(job_number_default) # Update job number
             part_number_entry.setText(str(int(part_number_default)).zfill(2))
+            # project_name_entry.setText(job_name_parent)
+
 
     folder_type.currentTextChanged.connect(folder_type_change)
     
