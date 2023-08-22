@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import sys
 import yaml
@@ -55,19 +57,21 @@ def get_next_job_and_part_number():
     part_number = f"{max_part_number + 1:02d}"
     return job_number, part_number
 
-# Note the location of the yaml file
-script_dir = os.path.dirname(os.path.abspath(__file__))
-yaml_file_path = os.path.join(script_dir, 'config.yaml')
 
-# Open and read the yaml file
-with open(yaml_file_path, 'r') as f:
-    folder_structure = yaml.load(f, Loader=yaml.FullLoader)
+if __name__ == '__main__':
+    # Note the location of the yaml file
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    yaml_file_path = os.path.join(script_dir, 'config.yaml')
 
-# Locations to create folders
-folder_location = sys.argv[1] if len(sys.argv) > 1 else os.getcwd()
+    # Open and read the yaml file
+    with open(yaml_file_path, 'r') as f:
+        folder_structure = yaml.load(f, Loader=yaml.FullLoader)
 
-# Get existing jobs and parts
-job_no, part_no = get_next_job_and_part_number()
+    # Locations to create folders
+    folder_location = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.getcwd()
 
-# Create and display the GUI
-window(prompt_user, job_no, part_no, "Job Name", "Part Name")
+    # Get existing jobs and parts
+    job_no, part_no = get_next_job_and_part_number()
+
+    # Create and display the GUI
+    window(prompt_user, job_no, part_no, "Job Name", "Part Name")
