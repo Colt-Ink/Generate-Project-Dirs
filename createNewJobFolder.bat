@@ -1,7 +1,7 @@
 @echo off
 
 REM --- set scripts directory
-set "scripts=E:\MEGA\MEGA\Scripts\Create Job Folders - Win"
+set "scripts=E:\MEGA\MEGA\Scripts\Generate-Project-Dirs"
 
 REM --- set virtual environment directory
 set "venv=%scripts%\env"

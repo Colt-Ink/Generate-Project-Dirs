@@ -10,10 +10,8 @@ The scripts can be run via a right-click context menu in Windows Explorer.
 To setup the context menu entry, modify the Windows Registry or use third-party software (like ShellNewHandler, FileMenu Tools, Custom Context Menu) to add an entry with the following command:
 
 ```command
-cmd /c "path\to\your\scripts\createNewJobFolder.bat" \"%V\"
+"path\to\your\scripts\createNewJobFolder.bat"
 ```
-
-The `\"%V\"` argument passes the full directory path (where the user right-clicked) to the batch script, which transfers it to the Python script.
 
 ## Scripts
 
