@@ -1,37 +1,39 @@
-1. **Install Python:** Download and install Python from https://www.python.org/. During installation, ensure that Python is added to your environment variables (there should be a checkbox option for this during the installation process).
+# Create New Job Folders
 
-2. **Set up your Python environment:** It's generally a best practice to create and use a virtual environment for your project to avoid any possible dependency conflicts. Here is how you can set it up:
+## Description
+This application facilitates generating a standard job/project folder structure. The user provides inputs such as job number, part number, project name, and part name. The program then generates a hierarchically nested directory structure.
 
-  - Open command prompt and change directory to your project folder:
+## Usage
 
-    ```bash
-    cd path/to/your/project-dir
-    ```
+The scripts can be run via a right-click context menu in Windows Explorer.
 
-  - Create a new virtual environment:
+To setup the context menu entry, modify the Windows Registry or use third-party software (like ShellNewHandler, FileMenu Tools, Custom Context Menu) to add an entry with the following command:
 
-    ```bash
-    python -m venv env
-    ```
+```command
+cmd /c "path\to\your\scripts\createNewJobFolder.bat" \"%V\"
+```
 
-  - Activate the environment:
+The `\"%V\"` argument passes the full directory path (where the user right-clicked) to the batch script, which transfers it to the Python script.
 
-    ```bash
-    env\Scripts\activate
-    ```
+## Scripts
 
-3. **Install Required Libraries:** Use the requirements file you created to install the required libraries:
+### `createNewJobFolder.bat`
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+This batch file sets up and activates a Python virtual environment, upgrades pip to ensure the latest version is used, installs necessary dependencies and runs the `createNewJobFolders.py` script.
 
-4. **Run the Script:** After the environment set up, you can run your python script:
+### `createNewJobFolders.py`
 
-    ```bash
-    python createNewJobFolder.py
-    ```
-   
-   The PyQt GUI should show up and you can interact with the program.
+This Python script reads a predefined list of folders from a YAML configuration file (`config.yaml`). It then creates these directories at the location provided as a command-line argument, or in the current working directory if no location is specified.
 
-5. **Set up the Context Menu (Optional):** If you want to run this script from the Windows Context Menu, follow the instructions mentioned in the previous responses to create a `.bat` file and add a new key to the Windows Registry. Note: This requires Administrator privileges on your machine and any misuse of the Windows Registry can cause system instability. Please follow the instructions carefully.
+### `GUI.py`
+
+This Python script generates a simple GUI to collect user input, which includes the job number, part number, project name, and part name for the new folder structure.
+
+## Dependencies
+
+This script requires the following to be installed:
+
+- Python 3
+- pip
+- PyYAML
+- PyQt5

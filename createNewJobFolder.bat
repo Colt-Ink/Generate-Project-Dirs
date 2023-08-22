@@ -24,7 +24,7 @@ python -m pip install -r "%scripts%\requirements.txt"
 
 REM --- run Python script
 echo Running script...
-python "%scripts%\createNewJobFolders.py" "%cd%"
+python "%scripts%\createNewJobFolders.py" "%~1"
 
 REM --- deactivate venv
 call deactivate
