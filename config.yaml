@@ -1,0 +1,62 @@
+- 000_ProjectName:
+  - 000-00_ProjectName_CommonFiles:
+    - ORIGINALS-SOURCE:
+      - FROM CLIENT:
+      - FROM ITK:
+    - WORKING-FILES:
+      - LINKS:
+        - LOGOS:
+        - RASTER:
+          - FINAL:
+          - WORKING:
+        - VECTOR:
+          - FINAL:
+          - WORKING:
+      - NATIVE FILES:
+        - ACROBAT:
+        - AFTER EFFECTS:
+          - BACKUP:
+        - CODE:
+          - HUBSPOT:
+        - ILLUSTRATOR:
+          - BACKUP:
+        - INDESIGN:
+          - BACKUP:
+        - PHOTOSHOP:
+          - BACKUP:
+      - SUPPORT:
+    - _OUTPUT:
+      - 01-FINAL:
+      - 02-REVIEW:
+      - 03-DELIVERY-PACKAGES:
+      - 04-SUPPORT:
+  - 000-01_ProjectName_partName:
+    - ORIGINALS-SOURCE:
+    - WORKING-FILES:
+      - LINKS:
+        - LOGOS:
+        - RASTER:
+          - FINAL:
+          - WORKING:
+        - VECTOR:
+          - FINAL:
+          - WORKING:
+      - NATIVE FILES:
+        - ACROBAT:
+        - AFTER EFFECTS:
+          - BACKUP:
+        - CODE:
+          - HUBSPOT:
+        - ILLUSTRATOR:
+          - BACKUP:
+        - INDESIGN:
+          - BACKUP:
+        - PHOTOSHOP:
+          - BACKUP:
+      - SUPPORT:
+        - BACKUPS:
+    - _OUTPUT:
+      - 01-FINAL:
+      - 02-REVIEW:
+      - 03-DELIVERY-PACKAGES:
+      - 04-SUPPORT:
