@@ -16,23 +16,29 @@ def window(callback, job_number_default, part_number_default, project_name_defau
     folder_type.addItem('New Job')
     folder_type.addItem('New Part')
 
+    folder_type.setCurrentIndex(1)  # Set "New Part" as the default value
+    
     job_number_label = QLabel('Job Number:')
     job_number_entry = QLineEdit()
+    job_number_entry.setText(job_number_default)
     layout.addWidget(job_number_label, 1, 0)
     layout.addWidget(job_number_entry, 1, 1)
 
     part_number_label = QLabel('Part Number:')
     part_number_entry = QLineEdit()
+    part_number_entry.setText(part_number_default)
     layout.addWidget(part_number_label, 2, 0)
     layout.addWidget(part_number_entry, 2, 1)
 
     project_name_label = QLabel('Project Name:')
     project_name_entry = QLineEdit()
+    project_name_entry.setText(project_name_default)
     layout.addWidget(project_name_label, 3, 0)
     layout.addWidget(project_name_entry, 3, 1)
 
     part_name_label = QLabel('Part Name:')
     part_name_entry = QLineEdit()
+    part_name_entry.setText(part_name_default)
     layout.addWidget(part_name_label, 4, 0)
     layout.addWidget(part_name_entry, 4, 1)
 
@@ -55,6 +61,14 @@ def window(callback, job_number_default, part_number_default, project_name_defau
         callback(job_number_input, part_number_input, project_name_input, part_name_input, folder_type_input)
         win.close()
 
+    def folder_type_change(state):
+        # If it's a new job, set the next part number to 1
+        if state == "New Job":
+            _, part_number_default = callback("", "", "", "", "New Job")
+            part_number_entry.setText(str(int(part_number_default)+1).zfill(2))
+
+    folder_type.currentTextChanged.connect(folder_type_change)
+    
     submit_button = QPushButton('Create Folder Structure')
     submit_button.clicked.connect(on_submit)
     layout.addWidget(submit_button, 5, 0, 1, 2)

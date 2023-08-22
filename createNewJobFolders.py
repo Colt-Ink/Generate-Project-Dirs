@@ -37,22 +37,28 @@ def create_folder_structure(structure, parent, job_number_input, part_number, pr
     print(f"Destination directory: {parent}")
 
 
-def get_next_job_and_part_number():
+def get_next_job_and_part_number(folder_type="New Job"):
     """Returns the next job and part number based on the job and part numbers already existing in the destination
     folder."""
     # Get current folder location
     job_numbers = [0]
-    part_numbers = []
+    part_numbers = [1]
+    highest_job_number = 0
     for folder in os.listdir(folder_location):
         match = re.match(r'(\d{3})-(\d{2})_.*', folder)
         if match:
             job_number = int(match.group(1))
             part_number = int(match.group(2))
-            job_numbers.append(job_number)
-            part_numbers.append(part_number)
-    max_part_number = max(part_numbers, default=0)
+
+            if job_number == highest_job_number and folder_type == "New Part":
+               part_numbers.append(part_number + 1)
+
+            if job_number >= highest_job_number:
+               highest_job_number = job_number
+               job_numbers.append(job_number)
+    
     job_number = f"{max(job_numbers, default=0):03d}"
-    part_number = f"{max_part_number + 1:02d}"
+    part_number = f"{max(part_numbers, default=1):02d}" if folder_type == "New Part" else f"{1:02d}"
     return job_number, part_number
 
 # Note the location of the yaml file
