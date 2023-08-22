@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QGridLayout, QWidget, QComboBox, QLineEdit, QPushButton, QMessageBox
 
-def window(callback, job_number_default, part_number_default, project_name_default, part_name_default):
+def window(callback, get_next_number_fn, job_number_default, part_number_default, project_name_default, part_name_default):
     app = QApplication([])
     win = QMainWindow()
     win.setWindowTitle('New Project')
@@ -17,7 +17,7 @@ def window(callback, job_number_default, part_number_default, project_name_defau
     folder_type.addItem('New Part')
 
     folder_type.setCurrentIndex(1)  # Set "New Part" as the default value
-    
+
     job_number_label = QLabel('Job Number:')
     job_number_entry = QLineEdit()
     job_number_entry.setText(job_number_default)
@@ -64,8 +64,12 @@ def window(callback, job_number_default, part_number_default, project_name_defau
     def folder_type_change(state):
         # If it's a new job, set the next part number to 1
         if state == "New Job":
-            _, part_number_default = callback("", "", "", "", "New Job")
-            part_number_entry.setText(str(int(part_number_default)+1).zfill(2))
+            job_number_default, _ = get_next_number_fn("New Job")
+            job_number_entry.setText(job_number_default)
+            part_number_entry.setText("01")
+        else:  # "New Part"
+            _, part_number_default = get_next_number_fn("New Part")
+            part_number_entry.setText(str(int(part_number_default)).zfill(2))
 
     folder_type.currentTextChanged.connect(folder_type_change)
     

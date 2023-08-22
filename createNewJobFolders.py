@@ -39,10 +39,7 @@ def create_folder_structure(structure, parent, job_number_input, part_number, pr
     print(f"Destination directory: {parent}")
 
 
-def get_next_job_and_part_number(folder_type="New Job"):
-    """Returns the next job and part number based on the job and part numbers already existing in the destination
-    folder."""
-    # Get current folder location
+def get_next_job_and_part_number(folder_type="New Part"):
     job_numbers = [0]
     part_numbers = [1]
     highest_job_number = 0
@@ -52,15 +49,19 @@ def get_next_job_and_part_number(folder_type="New Job"):
             job_number = int(match.group(1))
             part_number = int(match.group(2))
 
-            if job_number == highest_job_number and folder_type == "New Part":
-               part_numbers.append(part_number + 1)
+            if job_number > highest_job_number:
+                highest_job_number = job_number
+                job_numbers.append(job_number)
+                part_numbers = [part_number]  # Reset part_numbers list
+            elif job_number == highest_job_number:
+                part_numbers.append(part_number)
 
-            if job_number >= highest_job_number:
-               highest_job_number = job_number
-               job_numbers.append(job_number)
-    
-    job_number = f"{max(job_numbers, default=0):03d}"
-    part_number = f"{max(part_numbers, default=1):02d}" if folder_type == "New Part" else f"{1:02d}"
+    if folder_type == "New Job":
+        job_number = f"{max(job_numbers, default=0) + 1:03d}"
+        part_number = f"{1:02d}"
+    else:  # "New Part"
+        job_number = f"{max(job_numbers, default=0):03d}"
+        part_number = f"{max(part_numbers, default=1) + 1:02d}"
     return job_number, part_number
 
 
@@ -80,4 +81,4 @@ if __name__ == '__main__':
     job_no, part_no = get_next_job_and_part_number()
 
     # Create and display the GUI
-    window(prompt_user, job_no, part_no, "Job Name", "Part Name")
+    window(prompt_user, get_next_job_and_part_number, job_no, part_no, "Job Name", "Part Name")
