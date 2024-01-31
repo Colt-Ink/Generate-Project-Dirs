@@ -17,12 +17,18 @@
         - AFTER EFFECTS:
           - BACKUP:
         - CODE:
-          - HUBSPOT:
+          - VISUAL-STUDIO:
         - ILLUSTRATOR:
           - BACKUP:
-        - INDESIGN:
+        - FRESCO:
           - BACKUP:
         - PHOTOSHOP:
+          - BACKUP:
+        - COMFY:
+          - BACKUP:
+        - EXSTAR:
+          - BACKUP:
+        - BLENDER:
           - BACKUP:
       - SUPPORT:
     - _OUTPUT:
@@ -46,12 +52,18 @@
         - AFTER EFFECTS:
           - BACKUP:
         - CODE:
-          - HUBSPOT:
+          - VISUAL-STUDIO:
         - ILLUSTRATOR:
           - BACKUP:
-        - INDESIGN:
+        - FRESCO:
           - BACKUP:
         - PHOTOSHOP:
+          - BACKUP:
+        - COMFY:
+          - BACKUP:
+        - EXSTAR:
+          - BACKUP:
+        - BLENDER:
           - BACKUP:
       - SUPPORT:
         - BACKUPS:
